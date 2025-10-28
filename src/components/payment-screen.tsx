@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Crown, Check, Star, Zap, Shield, Sparkles } from "lucide-react";
 
 export function PaymentScreen() {
-  const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly">("monthly");
+  const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly">(
+    "monthly"
+  );
 
   const features = {
     free: [
@@ -10,7 +12,7 @@ export function PaymentScreen() {
       "Limited schedule entries",
       "3 diary entries per day",
       "Basic music stems",
-      "5 aesthetic boards"
+      "5 aesthetic boards",
     ],
     premium: [
       "Advanced AI conversations",
@@ -21,23 +23,25 @@ export function PaymentScreen() {
       "Priority support",
       "Advanced analytics",
       "Custom themes",
-      "Export functionality"
-    ]
+      "Export functionality",
+    ],
   };
 
   const pricing = {
     monthly: { price: "$9.99", period: "month" },
-    yearly: { price: "$99.99", period: "year", savings: "Save 17%" }
+    yearly: { price: "$99.99", period: "year", savings: "Save 17%" },
   };
 
   return (
     <div className="h-full bg-gradient-to-br from-[#FAF8FF] via-[#F8F5FF] to-[#FFF8FB] overflow-y-auto">
       {/* Header */}
-      <div className="p-6 text-center">
+      <div className="p-6 flex flex-col items-center justify-center text-center">
         <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#A78BFA] to-[#FFC2D4] flex items-center justify-center">
-          <Crown className="w-10 h-10 text-white" />
+          <Crown className="w-10 h-10 text-white animate-pulse" />
         </div>
-        <h1 className="text-3xl font-bold text-[#6B46C1] mb-2">Upgrade to Premium</h1>
+        <h1 className="text-3xl font-bold text-[#6B46C1] mb-2">
+          Upgrade to Premium
+        </h1>
         <p className="text-[#8B7FA3] text-lg">
           Unlock the full potential of your AI assistant
         </p>
@@ -126,7 +130,9 @@ export function PaymentScreen() {
           <div className="text-center mb-4">
             <div className="text-3xl font-bold text-[#6B46C1]">
               {pricing[selectedPlan].price}
-              <span className="text-lg text-[#8B7FA3]">/{pricing[selectedPlan].period}</span>
+              <span className="text-lg text-[#8B7FA3]">
+                /{pricing[selectedPlan].period}
+              </span>
             </div>
             {selectedPlan === "yearly" && (
               <div className="text-sm text-green-600 font-medium">
@@ -158,7 +164,9 @@ export function PaymentScreen() {
           <Shield className="w-6 h-6 text-green-600" />
           <div>
             <p className="text-sm text-gray-700 font-medium">Secure Payment</p>
-            <p className="text-xs text-gray-500">Cancel anytime • 30-day money-back guarantee</p>
+            <p className="text-xs text-gray-500">
+              Cancel anytime • 30-day money-back guarantee
+            </p>
           </div>
         </div>
       </div>

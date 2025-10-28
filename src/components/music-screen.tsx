@@ -1,4 +1,11 @@
-import { Play, Pause, SkipForward, SkipBack, Music2, Volume2 } from "lucide-react";
+import {
+  Play,
+  Pause,
+  SkipForward,
+  SkipBack,
+  Music2,
+  Volume2,
+} from "lucide-react";
 import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
@@ -7,7 +14,8 @@ const playlists = [
     id: 1,
     name: "Focus Flow",
     description: "Calm instrumental music for deep focus",
-    image: "https://images.unsplash.com/photo-1760662939135-d13f04cc3a13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwc3R1ZHklMjBkZXNrfGVufDF8fHx8MTc2MTAyMTMxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image:
+      "https://images.unsplash.com/photo-1760662939135-d13f04cc3a13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwc3R1ZHklMjBkZXNrfGVufDF8fHx8MTc2MTAyMTMxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     color: "#A78BFA",
     songs: 24,
   },
@@ -15,7 +23,8 @@ const playlists = [
     id: 2,
     name: "Chill Vibes",
     description: "Relaxing tunes for unwinding",
-    image: "https://images.unsplash.com/photo-1610960565152-2adaa5fa6d39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0ZWwlMjBhZXN0aGV0aWMlMjByb29tfGVufDF8fHx8MTc2MTAyMTMxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image:
+      "https://images.unsplash.com/photo-1610960565152-2adaa5fa6d39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0ZWwlMjBhZXN0aGV0aWMlMjByb29tfGVufDF8fHx8MTc2MTAyMTMxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     color: "#FFC2D4",
     songs: 18,
   },
@@ -23,7 +32,8 @@ const playlists = [
     id: 3,
     name: "Study Lofi",
     description: "Lo-fi beats for productive sessions",
-    image: "https://images.unsplash.com/photo-1682335688718-cd3c073bd18b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0JTIwY2xvdWRzJTIwc2t5fGVufDF8fHx8MTc2MDk3MTMwOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image:
+      "https://images.unsplash.com/photo-1682335688718-cd3c073bd18b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0JTIwY2xvdWRzJTIwc2t5fGVufDF8fHx8MTc2MDk3MTMwOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     color: "#BAE6FD",
     songs: 32,
   },
@@ -31,7 +41,8 @@ const playlists = [
     id: 4,
     name: "Nature Sounds",
     description: "Peaceful ambient nature recordings",
-    image: "https://images.unsplash.com/photo-1631791222734-2f1cb65e2fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXZlbmRlciUyMGZsb3dlcnMlMjBmaWVsZHxlbnwxfHx8fDE3NjEwMjEzMTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image:
+      "https://images.unsplash.com/photo-1631791222734-2f1cb65e2fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXZlbmRlciUyMGZsb3dlcnMlMjBmaWVsZHxlbnwxfHx8fDE3NjEwMjEzMTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     color: "#BBF7D0",
     songs: 15,
   },
@@ -53,7 +64,7 @@ export function MusicScreen() {
   const [selectedPlaylist, setSelectedPlaylist] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col h-full bg-gradient-to-br from-[#FAF8FF] via-[#E9F5FF] to-[#E8FAF0] overflow-hidden">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-[#FAF8FF] via-[#E9F5FF] to-[#E8FAF0] overflow-auto">
       {/* Header */}
       <div className="bg-white border-b border-[#A78BFA]/10 px-4 py-4">
         <h2 className="text-[#4A4458]">Music</h2>

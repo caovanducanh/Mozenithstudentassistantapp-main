@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, Sparkles, ArrowRight, Apple, Chrome } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  Sparkles,
+  ArrowRight,
+  Apple,
+  Chrome,
+} from "lucide-react";
 
 interface LoginScreenProps {
   onLogin: () => void;
@@ -16,7 +25,7 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate login process
     setTimeout(() => {
       setIsLoading(false);
@@ -45,33 +54,35 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
       <div className="relative z-10 min-h-full flex items-center justify-center p-6">
         <div className="w-full max-w-md">
           {/* Logo and Welcome */}
-          <div className="text-center mb-8">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-[#A78BFA] to-[#FFC2D4] flex items-center justify-center shadow-2xl">
-              <Sparkles className="w-10 h-10 text-white animate-pulse" />
+          <div className="flex flex-col items-center mb-14">
+            <div className="flex justify-center items-center mb-8">
+              <Sparkles className="w-20 h-20 animate-pulse" />
             </div>
-            <h1 className="text-3xl font-bold text-[#6B46C1] mb-2">Welcome Back</h1>
-            <p className="text-[#8B7FA3] text-lg">
+            <h1 className="text-3xl font-bold text-[#6B46C1] mb-4">
+              Welcome Back
+            </h1>
+            <p className="text-[#8B7FA3] text-lg text-center mb-2">
               Sign in to continue your journey with Mozenith
             </p>
           </div>
 
           {/* Login Form */}
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-8 mb-10">
             {/* Email Field */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-[#6B46C1]" htmlFor="email">
+            <div className="space-y-3">
+              <label
+                className="text-sm font-medium text-[#6B46C1] mb-1"
+                htmlFor="email"
+              >
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-[#A78BFA]" />
-                </div>
                 <input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 bg-white/80 backdrop-blur-sm border border-[#A78BFA]/20 rounded-2xl text-[#6B46C1] placeholder-[#8B7FA3] focus:outline-none focus:ring-2 focus:ring-[#A78BFA]/50 focus:border-[#A78BFA] transition-all"
+                  className="w-full py-4 bg-white/80 border border-[#A78BFA]/20 rounded-2xl text-[#6B46C1]"
                   placeholder="Enter your email"
                   required
                 />
@@ -79,14 +90,14 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
             </div>
 
             {/* Password Field */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-[#6B46C1]" htmlFor="password">
+            <div className="space-y-3 mt-4">
+              <label
+                className="text-sm font-medium text-[#6B46C1] mb-1 "
+                htmlFor="password"
+              >
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-[#A78BFA]" />
-                </div>
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -101,14 +112,18 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#A78BFA] hover:text-[#6B46C1] transition-colors"
                 >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
                 </button>
               </div>
             </div>
 
             {/* Remember Me & Forgot Password */}
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
+            <div className="flex items-center justify-between mt-4 mb-4">
+              <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   checked={rememberMe}
@@ -143,24 +158,24 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
           </form>
 
           {/* Divider */}
-          <div className="my-8 flex items-center">
+          <div className="mt-4 mb-4 flex items-center">
             <div className="flex-1 border-t border-[#A78BFA]/20"></div>
-            <div className="px-4 text-sm text-[#8B7FA3] bg-[#FAF8FF]">or continue with</div>
+            <div className="px-4 text-sm text-[#8B7FA3]">or continue with</div>
             <div className="flex-1 border-t border-[#A78BFA]/20"></div>
           </div>
 
           {/* Social Login */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-6 mb-12">
             <button
               onClick={() => handleSocialLogin("Google")}
-              className="flex items-center justify-center gap-2 py-3 px-4 bg-white/80 backdrop-blur-sm border border-[#A78BFA]/20 rounded-2xl text-[#6B46C1] font-medium hover:bg-white hover:shadow-lg transition-all"
+              className="flex items-center justify-center gap-2 py-4 px-4 bg-white/80 backdrop-blur-sm border border-[#A78BFA]/20 rounded-2xl text-[#6B46C1] font-medium hover:bg-white hover:shadow-lg transition-all"
             >
               <Chrome className="w-5 h-5" />
               Google
             </button>
             <button
               onClick={() => handleSocialLogin("Apple")}
-              className="flex items-center justify-center gap-2 py-3 px-4 bg-white/80 backdrop-blur-sm border border-[#A78BFA]/20 rounded-2xl text-[#6B46C1] font-medium hover:bg-white hover:shadow-lg transition-all"
+              className="flex items-center justify-center gap-2 py-4 px-4 bg-white/80 backdrop-blur-sm border border-[#A78BFA]/20 rounded-2xl text-[#6B46C1] font-medium hover:bg-white hover:shadow-lg transition-all"
             >
               <Apple className="w-5 h-5" />
               Apple
@@ -168,7 +183,7 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
           </div>
 
           {/* Sign Up Link */}
-          <div className="text-center">
+          <div className="text-center mb-8 mt-4">
             <p className="text-[#8B7FA3]">
               Don't have an account?{" "}
               <button
@@ -181,12 +196,16 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
           </div>
 
           {/* Terms */}
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <p className="text-xs text-[#8B7FA3]">
               By signing in, you agree to our{" "}
-              <a href="#" className="text-[#A78BFA] hover:underline">Terms of Service</a>{" "}
+              <a href="#" className="text-[#A78BFA] hover:underline">
+                Terms of Service
+              </a>{" "}
               and{" "}
-              <a href="#" className="text-[#A78BFA] hover:underline">Privacy Policy</a>
+              <a href="#" className="text-[#A78BFA] hover:underline">
+                Privacy Policy
+              </a>
             </p>
           </div>
         </div>

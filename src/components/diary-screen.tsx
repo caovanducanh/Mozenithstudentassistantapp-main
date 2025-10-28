@@ -15,21 +15,24 @@ const sampleEntries = [
     date: "October 21, 2025",
     mood: "Happy",
     moodColor: "#BBF7D0",
-    content: "Today was a productive day! Finished all my assignments early and had time to relax. Feeling grateful for the good weather and spending time with friends.",
+    content:
+      "Today was a productive day! Finished all my assignments early and had time to relax. Feeling grateful for the good weather and spending time with friends.",
   },
   {
     id: 2,
     date: "October 20, 2025",
     mood: "Neutral",
     moodColor: "#BAE6FD",
-    content: "Regular day, nothing special. Attended classes and worked on the group project. Need to manage my time better.",
+    content:
+      "Regular day, nothing special. Attended classes and worked on the group project. Need to manage my time better.",
   },
   {
     id: 3,
     date: "October 19, 2025",
     mood: "Sad",
     moodColor: "#FFC2D4",
-    content: "Feeling a bit overwhelmed with upcoming exams. Need to create a better study schedule and take breaks.",
+    content:
+      "Feeling a bit overwhelmed with upcoming exams. Need to create a better study schedule and take breaks.",
   },
 ];
 
@@ -39,7 +42,7 @@ export function DiaryScreen() {
   const [entry, setEntry] = useState("");
 
   return (
-    <div className="flex flex-col h-full bg-gradient-to-br from-[#FAF8FF] via-[#FFF0F5] to-[#F3E8FF] overflow-hidden">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-[#FAF8FF] via-[#FFF0F5] to-[#F3E8FF] overflow-auto">
       {/* Header */}
       <div className="bg-white border-b border-[#FFC2D4]/20 px-4 py-4">
         <div className="flex items-center justify-between">
@@ -80,14 +83,14 @@ export function DiaryScreen() {
               ))}
             </div>
           </div>
-          
+
           <Textarea
             value={entry}
             onChange={(e) => setEntry(e.target.value)}
             placeholder="What's on your mind today?"
             className="min-h-[120px] rounded-2xl border-[#FFC2D4]/30 focus:border-[#FFC2D4] mb-3 resize-none"
           />
-          
+
           <div className="flex gap-2">
             <Button
               onClick={() => {
@@ -115,7 +118,7 @@ export function DiaryScreen() {
       )}
 
       {/* Past Entries */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="grow overflow-y-auto p-4 pb-24">
         <div className="space-y-4">
           {sampleEntries.map((entry) => (
             <div
@@ -146,7 +149,8 @@ export function DiaryScreen() {
             <div>
               <h4 className="text-[#4A4458] mb-1">Jarvis Reflection</h4>
               <p className="text-[#8B7FA3]">
-                I've noticed you've been feeling a bit stressed lately. Remember to take breaks and practice self-care. You're doing great! 💜
+                I've noticed you've been feeling a bit stressed lately. Remember
+                to take breaks and practice self-care. You're doing great! 💜
               </p>
             </div>
           </div>

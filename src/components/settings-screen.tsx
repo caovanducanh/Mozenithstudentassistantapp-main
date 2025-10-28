@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { 
-  User, 
-  Volume2, 
-  VolumeX, 
-  Trash2, 
-  Bell, 
-  Moon, 
-  Sun, 
-  Shield, 
+import {
+  User,
+  Volume2,
+  VolumeX,
+  Trash2,
+  Bell,
+  Moon,
+  Sun,
+  Shield,
   HelpCircle,
   ChevronRight,
   LogOut,
-  Database
+  Database,
 } from "lucide-react";
 
 interface SettingsItem {
@@ -70,46 +70,70 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
           label: "Account Information",
           description: "Manage your profile and preferences",
           action: () => console.log("Open profile"),
-          hasArrow: true
-        }
-      ]
+          hasArrow: true,
+        },
+      ],
     },
     {
       title: "Audio & Visual",
       items: [
         {
           icon: isMuted ? VolumeX : Volume2,
-          label: "Volume",
+          label: "",
           description: `${isMuted ? "Muted" : `${volume}%`}`,
           isCustom: true,
           customContent: (
-            <div className="flex items-center gap-3 w-full">
-              <button
-                onClick={toggleMute}
-                className="p-2 rounded-full hover:bg-[#A78BFA]/10 transition-colors"
-              >
-                {isMuted ? (
-                  <VolumeX className="w-5 h-5 text-[#8B7FA3]" />
-                ) : (
-                  <Volume2 className="w-5 h-5 text-[#A78BFA]" />
-                )}
-              </button>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={isMuted ? 0 : volume}
-                onChange={handleVolumeChange}
-                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-                style={{
-                  background: `linear-gradient(to right, #A78BFA 0%, #A78BFA ${volume}%, #e5e7eb ${volume}%, #e5e7eb 100%)`
-                }}
-              />
-              <span className="text-sm text-[#8B7FA3] w-10 text-right">
-                {isMuted ? "0%" : `${volume}%`}
-              </span>
+            <div className="flex flex-col w-full">
+              <h3 className="font-medium text-[#6B46C1] mb-1 text-center">
+                Volume
+              </h3>
+              <div className="flex items-center gap-3 w-full">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={isMuted ? 0 : volume}
+                  onChange={handleVolumeChange}
+                  className="flex-1 h-2 rounded-lg appearance-none cursor-pointer slider"
+                  style={{
+                    background: `linear-gradient(to right, #A78BFA 0%, #A78BFA ${volume}%, #e5e7eb ${volume}%, #e5e7eb 100%)`,
+                  }}
+                />
+                <span className="text-sm text-[#8B7FA3] w-10 text-center flex items-center justify-center">
+                  {isMuted ? "0%" : `${volume}%`}
+                </span>
+              </div>
+              <style>{`
+                .slider::-webkit-slider-thumb {
+                  background: #A78BFA;
+                  border: none;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  box-shadow: 0 0 2px #A78BFA;
+                }
+                .slider::-moz-range-thumb {
+                  background: #A78BFA;
+                  border: none;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  box-shadow: 0 0 2px #A78BFA;
+                }
+                .slider::-ms-thumb {
+                  background: #A78BFA;
+                  border: none;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  box-shadow: 0 0 2px #A78BFA;
+                }
+                .slider {
+                  accent-color: #A78BFA;
+                }
+              `}</style>
             </div>
-          )
+          ),
         },
         {
           icon: darkMode ? Moon : Sun,
@@ -117,9 +141,9 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
           description: darkMode ? "Dark mode" : "Light mode",
           isToggle: true,
           toggleValue: darkMode,
-          onToggle: setDarkMode
-        }
-      ]
+          onToggle: setDarkMode,
+        },
+      ],
     },
     {
       title: "Notifications",
@@ -130,9 +154,9 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
           description: "Get notified about updates and reminders",
           isToggle: true,
           toggleValue: notifications,
-          onToggle: setNotifications
-        }
-      ]
+          onToggle: setNotifications,
+        },
+      ],
     },
     {
       title: "Data & Storage",
@@ -142,16 +166,16 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
           label: "Storage Usage",
           description: "View app data usage",
           action: () => console.log("Open storage"),
-          hasArrow: true
+          hasArrow: true,
         },
         {
           icon: Trash2,
           label: "Clear Cache",
           description: "Free up space by clearing temporary data",
           action: () => setShowClearDialog(true),
-          isDestructive: true
-        }
-      ]
+          isDestructive: true,
+        },
+      ],
     },
     {
       title: "Support",
@@ -161,16 +185,16 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
           label: "Help & Support",
           description: "Get help and contact support",
           action: () => console.log("Open help"),
-          hasArrow: true
+          hasArrow: true,
         },
         {
           icon: Shield,
           label: "Privacy Policy",
           description: "View our privacy policy",
           action: () => console.log("Open privacy"),
-          hasArrow: true
-        }
-      ]
+          hasArrow: true,
+        },
+      ],
     },
     {
       title: "Account",
@@ -180,10 +204,10 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
           label: "Sign Out",
           description: "Sign out of your account",
           action: onLogout || (() => console.log("Sign out")),
-          isDestructive: true
-        }
-      ]
-    }
+          isDestructive: true,
+        },
+      ],
+    },
   ];
 
   return (
@@ -203,11 +227,11 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
             <h2 className="text-lg font-semibold text-[#6B46C1] mb-3">
               {section.title}
             </h2>
-            
+
             <div className="space-y-2">
               {section.items.map((item, itemIndex) => {
                 const Icon = item.icon;
-                
+
                 return (
                   <div
                     key={itemIndex}
@@ -219,7 +243,9 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
                           <Icon className="w-5 h-5 text-[#A78BFA]" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-medium text-[#6B46C1] mb-1">{item.label}</h3>
+                          <h3 className="font-medium text-[#6B46C1] mb-1">
+                            {item.label}
+                          </h3>
                           {item.customContent}
                         </div>
                       </div>
@@ -228,38 +254,46 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
                         onClick={item.action}
                         className="w-full flex items-center gap-3 text-left"
                       >
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                          item.isDestructive 
-                            ? "bg-red-100" 
-                            : "bg-[#A78BFA]/10"
-                        }`}>
-                          <Icon className={`w-5 h-5 ${
-                            item.isDestructive 
-                              ? "text-red-500" 
-                              : "text-[#A78BFA]"
-                          }`} />
+                        <div
+                          className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            item.isDestructive
+                              ? "bg-red-100"
+                              : "bg-[#A78BFA]/10"
+                          }`}
+                        >
+                          <Icon
+                            className={`w-5 h-5 ${
+                              item.isDestructive
+                                ? "text-red-500"
+                                : "text-[#A78BFA]"
+                            }`}
+                          />
                         </div>
-                        
+
                         <div className="flex-1">
-                          <h3 className={`font-medium mb-1 ${
-                            item.isDestructive 
-                              ? "text-red-600" 
-                              : "text-[#6B46C1]"
-                          }`}>
+                          <h3
+                            className={`font-medium mb-1 ${
+                              item.isDestructive
+                                ? "text-red-600"
+                                : "text-[#6B46C1]"
+                            }`}
+                          >
                             {item.label}
                           </h3>
                           <p className="text-[#8B7FA3] text-sm">
                             {item.description}
                           </p>
                         </div>
-                        
+
                         {item.isToggle ? (
                           <label className="relative inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
                               className="sr-only peer"
                               checked={item.toggleValue}
-                              onChange={(e) => item.onToggle?.(e.target.checked)}
+                              onChange={(e) =>
+                                item.onToggle?.(e.target.checked)
+                              }
                             />
                             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#A78BFA]"></div>
                           </label>
@@ -284,9 +318,12 @@ export function SettingsScreen({ onLogout }: SettingsScreenProps) {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
                 <Trash2 className="w-8 h-8 text-red-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Clear Cache?</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Clear Cache?
+              </h3>
               <p className="text-gray-600 mb-6">
-                This will remove temporary files and may help improve app performance. Your personal data will not be affected.
+                This will remove temporary files and may help improve app
+                performance. Your personal data will not be affected.
               </p>
               <div className="flex gap-3">
                 <button

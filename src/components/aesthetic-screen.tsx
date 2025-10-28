@@ -46,11 +46,11 @@ export function AestheticScreen() {
   const [selectedBoard, setSelectedBoard] = useState<number | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "masonry">("grid");
 
-  const selectedBoardData = moodBoards.find(b => b.id === selectedBoard);
+  const selectedBoardData = moodBoards.find((b) => b.id === selectedBoard);
 
   if (selectedBoard && selectedBoardData) {
     return (
-      <div className="flex flex-col h-full bg-gradient-to-br from-[#FAF8FF] via-[#FFF0F5] to-[#F0F9FF] overflow-hidden">
+      <div className="flex flex-col h-screen bg-gradient-to-br from-[#FAF8FF] via-[#FFF0F5] to-[#F0F9FF] overflow-auto">
         {/* Header */}
         <div className="bg-white border-b border-[#FFC2D4]/20 px-4 py-4">
           <div className="flex items-center justify-between">
@@ -74,7 +74,7 @@ export function AestheticScreen() {
         </div>
 
         {/* Image Gallery */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="grow overflow-y-auto p-4 pb-28">
           <div className="columns-2 gap-4 space-y-4">
             {selectedBoardData.images.map((image, idx) => (
               <div
@@ -95,7 +95,7 @@ export function AestheticScreen() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-gradient-to-br from-[#FAF8FF] via-[#FFF0F5] to-[#F0F9FF] overflow-hidden">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-[#FAF8FF] via-[#FFF0F5] to-[#F0F9FF] overflow-auto">
       {/* Header */}
       <div className="bg-white border-b border-[#FFC2D4]/20 px-4 py-4">
         <div className="flex items-center justify-between">
@@ -113,7 +113,7 @@ export function AestheticScreen() {
       </div>
 
       {/* Mood Boards Grid */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="grow overflow-y-auto p-4 pb-28">
         <div className="space-y-4">
           {moodBoards.map((board) => (
             <div
@@ -151,7 +151,9 @@ export function AestheticScreen() {
             <Plus className="w-8 h-8 text-[#A78BFA]" />
           </div>
           <h3 className="text-[#4A4458] mb-1">Create New Board</h3>
-          <p className="text-[#8B7FA3] text-center">Add images by URL or keyword</p>
+          <p className="text-[#8B7FA3] text-center">
+            Add images by URL or keyword
+          </p>
         </div>
       </div>
     </div>
